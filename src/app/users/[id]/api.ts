@@ -41,7 +41,7 @@ const schema = z.object({
 export async function handleSubmit(formData: FormData) {
   "use server";
 
-  const data: Data = Object.fromEntries(formData);
+  const data: any = Object.fromEntries(formData);
 
   if (data.password !== data.confirmPassword) {
     console.log("Passwords do not match");
@@ -65,7 +65,7 @@ export async function handleSubmit(formData: FormData) {
     };
   }
   // hash password
-  data.password = await hashPassword(data.password);
+  data.password = hashPassword(data.password);
   delete data.confirmPassword;
   await Users.create(data);
   redirect("/users");

@@ -11,18 +11,20 @@ type TextInputProps = {
   label: string;
   errorMessage?: string;
   helperText?: string;
+  required?: boolean;
 } & InputProps;
 
 function TextInput({
   label,
   name,
+  required,
   errorMessage,
   helperText,
   placeholder,
   ...rest
 }: TextInputProps) {
   return (
-    <FormControl>
+    <FormControl isRequired={required}>
       <FormLabel>{label}</FormLabel>
       <Input placeholder={placeholder || label} name={name} {...rest} />
 
